@@ -1,0 +1,75 @@
+{
+  "objective": "",
+  "budget": {
+    "maximum_iterations": 0,
+    "time_budget": "",
+    "maximum_risky_changes": 0
+  },
+  "iterations": [
+    {
+      "iteration_number": 1,
+      "state": {
+        "current_uncertainty": "",
+        "current_hypothesis": "",
+        "predicted_observation": "",
+        "experiment": "",
+        "validation_method": "",
+        "observed_result": "",
+        "interpretation": "",
+        "remaining_uncertainty": "",
+        "next_action": ""
+      },
+      "propose": {
+        "hypothesis": "",
+        "reason_for_testing_it": "",
+        "prediction": "",
+        "disconfirming_evidence": ""
+      },
+      "implement": {
+        "experiment": "",
+        "controlled_variables": [],
+        "changed_variable": "",
+        "baseline": "",
+        "expected_evidence": ""
+      },
+      "run": {
+        "command_or_procedure": "",
+        "inputs": [],
+        "environment": "",
+        "observed_output": "",
+        "execution_status": "not_run|failed_to_run|ran_and_failed|ran_and_passed"
+      },
+      "validate": {
+        "validation_method": "",
+        "validation_evidence": "",
+        "alternative_explanations_considered": [],
+        "validation_status": "VALIDATED|PARTIALLY_VALIDATED|INVALIDATED|INCONCLUSIVE",
+        "confidence": ""
+      },
+      "learn": {
+        "supported_assumptions": [],
+        "weakened_assumptions": [],
+        "what_was_not_established": "",
+        "new_information": "",
+        "remaining_uncertainty": "",
+        "confidence_update": ""
+      },
+      "select": {
+        "candidate_next_actions": [],
+        "selected_action": "",
+        "reason": "",
+        "expected_uncertainty_reduction": "",
+        "stop_or_continue": "stop|continue"
+      }
+    }
+  ],
+  "completion_record": {
+    "final_conclusion": "",
+    "evidence": "",
+    "validation_status": "VALIDATED|PARTIALLY_VALIDATED|INVALIDATED|INCONCLUSIVE",
+    "confidence": "",
+    "known_limitations": [],
+    "remaining_risks": [],
+    "reproduction_instructions": ""
+  }
+}
