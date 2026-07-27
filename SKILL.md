@@ -1,13 +1,13 @@
 ---
 name: uncertainty-reduction-loop
-description: Use an iterative research and engineering loop to investigate uncertain questions, debug unclear failures, test proposed solutions, validate evidence, learn from outcomes, and select the next action. Apply when the correct answer or implementation is not known in advance, including debugging, experimentation, prototyping, technical research, performance investigation, evaluation, and verification of proposed fixes. Do not use the full loop for simple deterministic tasks that can be directly verified in one step.
+description: "Run evidence-first loops for uncertain debugging, research, experiments, benchmarks, and validation-heavy engineering work."
 ---
 
 # Uncertainty Reduction Loop
 
 ## Objective
 
-Reduce uncertainty through explicit, testable iterations:
+Reduce uncertainty through explicit, testable iterations. Use the lightest loop that protects correctness; do not add ceremony to deterministic work.
 
 1. propose one hypothesis or approach
 2. implement the smallest useful experiment
@@ -29,14 +29,34 @@ Each iteration must produce evidence that supports an idea, weakens an idea, rev
 - Prefer reversible experiments before irreversible or high-risk changes.
 - Obtain approval before actions that may affect production systems, user data, security, finances, or external parties.
 
+## Trigger Fit
+
+Use this skill when at least one is true:
+
+- the cause, answer, implementation, or best approach is unknown
+- a plausible fix or conclusion needs evidence before it is trusted
+- a command, benchmark, source check, or reproduction produced surprising output
+- the work can drift through retries, guesses, or broad edits without learning
+- the result will be handed off, reused, promoted, or used to justify a decision
+
+Skip or compress the loop when the task is deterministic, low-risk, and directly verifiable in one step.
+
+Depth:
+
+- **Micro loop**: one concise paragraph for small uncertainties.
+- **Compact loop**: one visible iteration using `references/examples.md`.
+- **Full report**: JSON report plus script validation for long investigations, audits, handoffs, or reusable learnings.
+
 ## Supporting Resources
 
 - Read `references/examples.md` when examples, edge cases, or invocation patterns are needed.
+- Read `references/quality-rubric.md` when auditing loop quality or deciding how much process is warranted.
 - Read `references/openclaw-integration.md` when installing, enabling, or adapting the skill for OpenClaw workspaces.
 - Read `references/hooks-setup.md` only when the user explicitly wants hook reminders.
 - Use `assets/template.json` when a machine-readable uncertainty-loop report is needed.
 - Run `scripts/init-url-report.sh` to create an empty report from `assets/template.json`.
 - Run `scripts/validate-url-report.py` before returning or storing a machine-readable report.
+- Run `scripts/self-test.sh` after editing the skill package or report schema.
 - Use `assets/LEARNINGS.md`, `assets/ERRORS.md`, and `assets/FEATURE_REQUESTS.md` as optional `.learnings/` templates.
 - Use `hooks/openclaw/` only when the user explicitly wants an OpenClaw bootstrap reminder for the loop.
 
@@ -237,6 +257,20 @@ When the budget is reached:
 5. do not fabricate closure
 
 Stop and reconsider the strategy when two consecutive experiments produce no new information, the same hypothesis repeats without stronger evidence, retries change no meaningful variable, validation repeatedly fails for the same reason, or the investigation depends on unavailable evidence.
+
+## Quality Gate
+
+A strong loop has:
+
+- a hypothesis that could be weakened by a specific observation
+- a baseline or comparison point
+- actual output, not only a plan
+- validation that checks the measurement, not only the command exit status
+- named alternative explanations
+- a next action selected by information value
+- a final conclusion bounded to what was tested
+
+Reject the loop as too weak when it hides uncertainty, retries without changing conditions, changes success criteria after seeing output, or uses a broad implementation as a substitute for a focused experiment.
 
 ## Completion Gate
 

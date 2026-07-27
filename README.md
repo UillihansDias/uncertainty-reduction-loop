@@ -28,18 +28,26 @@ In plain terms: it prevents an agent from treating plausible reasoning as proof.
 ├── references/
 │   ├── examples.md                  # Invocation patterns and edge cases
 │   ├── hooks-setup.md               # Hook configuration for Claude Code, Codex, OpenClaw
-│   └── openclaw-integration.md      # Full OpenClaw workspace setup guide
+│   ├── openclaw-integration.md      # Full OpenClaw workspace setup guide
+│   └── quality-rubric.md            # Audit rubric and depth-control guidance
 └── scripts/
     ├── activator.sh                 # UserPromptSubmit hook reminder
     ├── error-detector.sh            # PostToolUse hook reminder for failures
     ├── extract-skill.sh             # Scaffolds a new skill from a validated loop
     ├── init-url-report.sh           # Creates an uncertainty-loop report JSON
+    ├── self-test.sh                 # Runs package-level validation checks
     └── validate-url-report.py       # Validates an uncertainty-loop report JSON
 ```
 
 ## What It Does
 
-Each invocation runs bounded iterations:
+Each invocation runs bounded iterations, using the lightest form that protects the conclusion:
+
+- **Micro loop** for one narrow uncertainty.
+- **Compact loop** for visible debugging or implementation iterations.
+- **Full report** for handoffs, audits, reusable learnings, or consequential decisions.
+
+The loop itself:
 
 1. **Propose** - define a testable hypothesis and disconfirming evidence.
 2. **Implement** - create the smallest reversible experiment.
@@ -75,6 +83,13 @@ To fetch the repository first:
 
 ```bash
 git clone https://github.com/UillihansDias/uncertainty-reduction-loop.git
+```
+
+From a local checkout:
+
+```bash
+openclaw skills install ./uncertainty-reduction-loop --as uncertainty-reduction-loop
+openclaw skills info uncertainty-reduction-loop
 ```
 
 Do not install from a user-specific Desktop path. The Desktop copy is only a source repository for handoff, review, and GitHub publishing.
@@ -113,8 +128,24 @@ cp assets/FEATURE_REQUESTS.md ~/.openclaw/workspace/.learnings/FEATURE_REQUESTS.
 - No irreversible or high-risk experiments when a reversible one can produce evidence.
 - Approval required before production, user-data, security, finance, or external-party impact.
 
+## Validation
+
+Run the package self-test after edits:
+
+```bash
+./scripts/self-test.sh
+```
+
+For a full OpenClaw check after installation:
+
+```bash
+openclaw skills info uncertainty-reduction-loop
+python3 /path/to/skill-creator/scripts/quick_validate.py /path/to/uncertainty-reduction-loop
+```
+
 ## References
 
 - [Examples and edge cases](references/examples.md)
 - [Hook setup guide](references/hooks-setup.md)
 - [OpenClaw integration](references/openclaw-integration.md)
+- [Quality rubric](references/quality-rubric.md)

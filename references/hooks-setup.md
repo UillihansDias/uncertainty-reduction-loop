@@ -81,6 +81,7 @@ openclaw hooks enable uncertainty-reduction-loop
 | `scripts/activator.sh` | UserPromptSubmit | Reminds agent to evaluate whether an uncertainty loop is warranted |
 | `scripts/error-detector.sh` | PostToolUse (Bash) | Treats failed commands as loop evidence |
 | `scripts/extract-skill.sh` | Manual | Scaffolds a new skill from a validated loop |
+| `scripts/self-test.sh` | Manual | Verifies report initialization, schema validation, and placeholder rejection |
 
 ## Verification
 
@@ -97,12 +98,14 @@ Expected output contains `<uncertainty-reduction-reminder>`.
 ```bash
 ./scripts/init-url-report.sh /tmp/uncertainty-loop-report.json
 ./scripts/validate-url-report.py /tmp/uncertainty-loop-report.json
+./scripts/self-test.sh
 ```
 
 Expected validation output:
 
 ```text
 VALID: uncertainty loop report schema passed
+VALID: uncertainty-reduction-loop self-test passed
 ```
 
 ## Troubleshooting

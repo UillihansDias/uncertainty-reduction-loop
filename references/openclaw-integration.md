@@ -42,6 +42,13 @@ If obtaining the repository from GitHub first:
 git clone https://github.com/UillihansDias/uncertainty-reduction-loop.git
 ```
 
+If installing from a local checkout with the OpenClaw CLI:
+
+```bash
+openclaw skills install ./uncertainty-reduction-loop --as uncertainty-reduction-loop
+openclaw skills info uncertainty-reduction-loop
+```
+
 Avoid user-specific Desktop paths in install documentation. They are local source locations, not portable installation instructions.
 
 The skill entrypoint OpenClaw should detect is:
@@ -82,6 +89,7 @@ Create and validate a machine-readable report:
 ```bash
 ./scripts/init-url-report.sh ./uncertainty-loop-report.json
 ./scripts/validate-url-report.py ./uncertainty-loop-report.json
+./scripts/self-test.sh
 ```
 
 ## Promotion Decision Tree
@@ -103,6 +111,7 @@ Did a loop produce a reusable investigation pattern?
 | Unclear bug or failure | Run the full loop |
 | Test passes but coverage is uncertain | Validate before completion |
 | Command fails during experiment | Treat failure as evidence |
+| Two attempts add no new information | Stop, reframe, or escalate |
 | User asks for a repeatable investigation pattern | Extract a skill from the validated loop |
 
 ## Verification

@@ -1,75 +1,96 @@
 {
-  "objective": "",
+  "objective": "Describe the uncertainty being reduced.",
   "budget": {
-    "maximum_iterations": 0,
-    "time_budget": "",
+    "maximum_iterations": 3,
+    "time_budget": "Set a concrete timebox before starting.",
     "maximum_risky_changes": 0
   },
   "iterations": [
     {
       "iteration_number": 1,
       "state": {
-        "current_uncertainty": "",
-        "current_hypothesis": "",
-        "predicted_observation": "",
-        "experiment": "",
-        "validation_method": "",
-        "observed_result": "",
-        "interpretation": "",
-        "remaining_uncertainty": "",
-        "next_action": ""
+        "current_uncertainty": "What is still unknown?",
+        "current_hypothesis": "What explanation or approach is being tested?",
+        "predicted_observation": "What should be observed if the hypothesis is right?",
+        "experiment": "What smallest useful experiment will be run?",
+        "validation_method": "How will the observation be checked?",
+        "observed_result": "Record actual output after running.",
+        "interpretation": "Separate observation from interpretation.",
+        "remaining_uncertainty": "What remains unresolved?",
+        "next_action": "Continue, stop, refine, revert, or escalate."
       },
       "propose": {
-        "hypothesis": "",
-        "reason_for_testing_it": "",
-        "prediction": "",
-        "disconfirming_evidence": ""
+        "hypothesis": "Testable hypothesis.",
+        "reason_for_testing_it": "Why this is the highest-information next test.",
+        "prediction": "Expected observation if true.",
+        "disconfirming_evidence": "Observation that would weaken or falsify it."
       },
       "implement": {
-        "experiment": "",
-        "controlled_variables": [],
-        "changed_variable": "",
-        "baseline": "",
-        "expected_evidence": ""
+        "experiment": "Smallest reversible experiment.",
+        "controlled_variables": [
+          "List conditions held constant."
+        ],
+        "changed_variable": "The one major variable changed.",
+        "baseline": "Previous state, command, output, version, or comparison point.",
+        "expected_evidence": "Evidence this experiment should produce."
       },
       "run": {
-        "command_or_procedure": "",
-        "inputs": [],
-        "environment": "",
-        "observed_output": "",
-        "execution_status": "not_run|failed_to_run|ran_and_failed|ran_and_passed"
+        "command_or_procedure": "Command, reproduction, benchmark, source check, or manual procedure.",
+        "inputs": [
+          "List files, URLs, parameters, fixtures, prompts, or data used."
+        ],
+        "environment": "Relevant versions, paths, state, or assumptions.",
+        "observed_output": "Actual result. Use not_run only before execution.",
+        "execution_status": "not_run"
       },
       "validate": {
-        "validation_method": "",
-        "validation_evidence": "",
-        "alternative_explanations_considered": [],
-        "validation_status": "VALIDATED|PARTIALLY_VALIDATED|INVALIDATED|INCONCLUSIVE",
-        "confidence": ""
+        "validation_method": "Checks used to decide whether the result measured the intended thing.",
+        "validation_evidence": "Evidence supporting the validation status.",
+        "alternative_explanations_considered": [
+          "Mocks, cache, stale state, randomness, incomplete coverage, or measurement bias."
+        ],
+        "validation_status": "INCONCLUSIVE",
+        "confidence": "low"
       },
       "learn": {
-        "supported_assumptions": [],
-        "weakened_assumptions": [],
-        "what_was_not_established": "",
-        "new_information": "",
-        "remaining_uncertainty": "",
-        "confidence_update": ""
+        "supported_assumptions": [
+          "Assumptions strengthened by the observation."
+        ],
+        "weakened_assumptions": [
+          "Assumptions weakened by the observation."
+        ],
+        "what_was_not_established": "What this experiment does not prove.",
+        "new_information": "What changed in the working model.",
+        "remaining_uncertainty": "What still needs evidence.",
+        "confidence_update": "How confidence changed and why."
       },
       "select": {
-        "candidate_next_actions": [],
-        "selected_action": "",
-        "reason": "",
-        "expected_uncertainty_reduction": "",
-        "stop_or_continue": "stop|continue"
+        "candidate_next_actions": [
+          "Continue",
+          "stop",
+          "refine hypothesis",
+          "test competing hypothesis",
+          "repair environment",
+          "escalate"
+        ],
+        "selected_action": "Selected next action.",
+        "reason": "Why this action has the best information value.",
+        "expected_uncertainty_reduction": "What uncertainty this action should reduce.",
+        "stop_or_continue": "continue"
       }
     }
   ],
   "completion_record": {
-    "final_conclusion": "",
-    "evidence": "",
-    "validation_status": "VALIDATED|PARTIALLY_VALIDATED|INVALIDATED|INCONCLUSIVE",
-    "confidence": "",
-    "known_limitations": [],
-    "remaining_risks": [],
-    "reproduction_instructions": ""
+    "final_conclusion": "Current conclusion, bounded to the evidence.",
+    "evidence": "Commands, observations, checks, source excerpts, or measurements used.",
+    "validation_status": "INCONCLUSIVE",
+    "confidence": "low",
+    "known_limitations": [
+      "Limitations of the evidence or environment."
+    ],
+    "remaining_risks": [
+      "Risks not ruled out."
+    ],
+    "reproduction_instructions": "How to rerun or inspect the evidence."
   }
 }

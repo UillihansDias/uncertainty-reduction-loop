@@ -1,5 +1,15 @@
 # Examples
 
+## Depth Selection
+
+Use the smallest form that still protects the conclusion.
+
+- Micro loop: quick uncertain checks, one failed command, one suspicious source, one narrow bug guess.
+- Compact loop: one implementation or debugging iteration where the result needs visible validation.
+- Full report: investigations that will be handed off, audited, repeated, promoted to a skill, or used for a consequential decision.
+
+Skip the loop for deterministic, low-risk tasks that can be directly verified in one step.
+
 ## Invocation: Debug an unclear failure
 
 User request:
@@ -35,6 +45,28 @@ Expected behavior:
 - Check whether the test covers the original failure.
 - Consider mocks, stale state, cache, randomness, and regression risk.
 - Use `VALIDATED` only when the completion gate is satisfied.
+
+## Edge Case: Repeated Failure
+
+Condition:
+- Two attempts fail with the same error or produce no new information.
+
+Expected behavior:
+- Stop repeating the same command.
+- State what the failures established.
+- Change the hypothesis, inputs, environment, or validation method.
+- Escalate if the needed evidence or permission is unavailable.
+
+## Edge Case: Overbroad Experiment
+
+Condition:
+- The proposed experiment bundles refactoring, dependency changes, prompt changes, and test edits together.
+
+Expected behavior:
+- Split it into the smallest reversible test.
+- Preserve the baseline.
+- Change one major variable where practical.
+- Record what is intentionally out of scope.
 
 ## Edge Case: Inconclusive result
 
@@ -102,4 +134,16 @@ Continue or stop:
 ## Remaining uncertainty
 
 ## Recommended next action
+```
+
+## Micro Loop Template
+
+```text
+Uncertainty:
+Hypothesis:
+Smallest test:
+Observed result:
+Validation:
+Conclusion:
+Next action:
 ```
