@@ -56,18 +56,33 @@ Each invocation runs bounded iterations:
 - Gives long investigations an explicit budget and stop condition.
 - Produces reviewable state, validation status, confidence, limits, and next action.
 
-## Installation
+## Use With OpenClaw
 
-From this Desktop copy:
+Give this repository folder to the OpenClaw install that should use the skill. OpenClaw should copy the repository into its own skills directory and register it from there.
 
-```bash
-openclaw skills install /Users/uillihansdias/Desktop/uncertainty-reduction-loop --as uncertainty-reduction-loop
+Expected installed shape:
+
+```text
+~/.openclaw/skills/uncertainty-reduction-loop/
+├── SKILL.md
+├── assets/
+├── hooks/
+├── references/
+└── scripts/
 ```
 
-From git:
+To fetch the repository first:
 
 ```bash
-openclaw skills install git:https://github.com/UillihansDias/uncertainty-reduction-loop.git --as uncertainty-reduction-loop
+git clone https://github.com/UillihansDias/uncertainty-reduction-loop.git
+```
+
+Do not install from a user-specific Desktop path. The Desktop copy is only a source repository for handoff, review, and GitHub publishing.
+
+For agents or OpenClaw installers, the skill entrypoint is:
+
+```text
+uncertainty-reduction-loop/SKILL.md
 ```
 
 ## Hook Setup (Optional)

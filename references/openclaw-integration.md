@@ -21,18 +21,33 @@ Setup and usage guide for integrating the uncertainty-reduction-loop skill with 
         └── handler.ts
 ```
 
-## Install the Skill
+## Add the Skill to OpenClaw
 
-From the Desktop copy:
+This repository is meant to be handed to OpenClaw as a complete skill package. The receiving OpenClaw install should copy the repository into its own skills directory and register it from there.
 
-```bash
-openclaw skills install /Users/uillihansdias/Desktop/uncertainty-reduction-loop --as uncertainty-reduction-loop
+Expected target shape:
+
+```text
+~/.openclaw/skills/uncertainty-reduction-loop/
+├── SKILL.md
+├── assets/
+├── hooks/
+├── references/
+└── scripts/
 ```
 
-From git:
+If obtaining the repository from GitHub first:
 
 ```bash
-openclaw skills install git:https://github.com/UillihansDias/uncertainty-reduction-loop.git --as uncertainty-reduction-loop
+git clone https://github.com/UillihansDias/uncertainty-reduction-loop.git
+```
+
+Avoid user-specific Desktop paths in install documentation. They are local source locations, not portable installation instructions.
+
+The skill entrypoint OpenClaw should detect is:
+
+```text
+uncertainty-reduction-loop/SKILL.md
 ```
 
 ## Install the Hook (Optional)
@@ -95,7 +110,7 @@ Did a loop produce a reusable investigation pattern?
 Check skill structure:
 
 ```bash
-python3 /path/to/skill-creator/scripts/quick_validate.py /Users/uillihansdias/Desktop/uncertainty-reduction-loop
+python3 /path/to/skill-creator/scripts/quick_validate.py /path/to/uncertainty-reduction-loop
 ```
 
 Check hook registration:
