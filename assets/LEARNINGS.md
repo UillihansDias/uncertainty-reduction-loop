@@ -1,6 +1,8 @@
-# Learnings
+# Persistent Learning Ledger
 
-Corrections, insights, and knowledge gaps captured during uncertainty-reduction loops.
+Starter format for the active workspace's accumulated, reusable lessons. Copy this file once to `.learnings/LEARNINGS.md`; append entries there, not in the installed skill's assets directory. Read relevant entries before new investigations and revalidate time-sensitive claims.
+
+Keep task-specific results in the task report. Record only reusable patterns, corrections, recurring tool/environment behavior, or decision-relevant knowledge gaps. Separate observation from interpretation, cite checkable evidence, and keep one-off findings pending until independently repeated or explicitly confirmed.
 
 **Categories**: correction | insight | knowledge_gap | best_practice
 **Areas**: propose | implement | run | validate | learn | select | completion_gate
@@ -22,6 +24,9 @@ One-line description of what was learned.
 
 ### Details
 What happened, what was assumed, what evidence changed the model, and what remains uncertain.
+
+### Evidence
+Checkable source, result, or observation supporting this entry; separate direct evidence from interpretation.
 
 ### Suggested Action
 Specific future behavior, check, or validation step.

@@ -18,7 +18,7 @@ In plain terms: it prevents an agent from treating plausible reasoning as proof.
 │   ├── template.json                # Machine-readable loop report template
 │   ├── ERRORS.md                    # Log template for experiment/tool errors
 │   ├── FEATURE_REQUESTS.md          # Log template for missing validation capabilities
-│   ├── LEARNINGS.md                 # Log template for reusable investigation learnings
+│   ├── LEARNINGS.md                 # Starter format for a workspace's persistent learning ledger
 │   └── SKILL-TEMPLATE.md            # Template for extracting validated loops into skills
 ├── hooks/
 │   └── openclaw/
@@ -109,13 +109,20 @@ cp -r hooks/openclaw ~/.openclaw/hooks/uncertainty-reduction-loop
 openclaw hooks enable uncertainty-reduction-loop
 ```
 
-## Learnings Directory
+## Persistent Learnings
 
-Create optional local logs:
+Each OpenClaw workspace using this skill keeps accumulated, reusable lessons in `.learnings/LEARNINGS.md`. The skill checks this ledger before a qualifying investigation and appends validated, reusable findings afterward. The asset below is only the starter format; it is not the accumulated ledger.
+
+Initialize it once if needed:
 
 ```bash
 mkdir -p ~/.openclaw/workspace/.learnings
 cp assets/LEARNINGS.md ~/.openclaw/workspace/.learnings/LEARNINGS.md
+```
+
+`ERRORS.md` and `FEATURE_REQUESTS.md` remain optional backlogs, not prerequisites for persistent learning:
+
+```bash
 cp assets/ERRORS.md ~/.openclaw/workspace/.learnings/ERRORS.md
 cp assets/FEATURE_REQUESTS.md ~/.openclaw/workspace/.learnings/FEATURE_REQUESTS.md
 ```

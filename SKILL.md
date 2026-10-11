@@ -57,7 +57,8 @@ Depth:
 - Run `scripts/init-url-report.sh` to create an empty report from `assets/template.json`.
 - Run `scripts/validate-url-report.py` before returning or storing a machine-readable report.
 - Run `scripts/self-test.sh` after editing the skill package or report schema.
-- Use `assets/LEARNINGS.md`, `assets/ERRORS.md`, and `assets/FEATURE_REQUESTS.md` as optional `.learnings/` templates.
+- Persist reusable outcomes in the active workspace's `.learnings/LEARNINGS.md`; `assets/LEARNINGS.md` defines its entry format, not a substitute for the live ledger.
+- Use `assets/ERRORS.md` and `assets/FEATURE_REQUESTS.md` only when a durable error or capability backlog is useful.
 - Use `hooks/openclaw/` only when the user explicitly wants an OpenClaw bootstrap reminder for the loop.
 
 ## Required State
@@ -79,6 +80,20 @@ Iteration number:
 ```
 
 Do not rely on implicit memory of previous attempts.
+
+## Persistent Learning
+
+The `Learn` step updates the current investigation's working model. When it yields a reusable lesson, also persist that lesson so a later invocation can benefit from it. This is the default, not an optional setup step.
+
+1. **Choose the right scope.** Use the current agent's workspace `.learnings/LEARNINGS.md` for cross-project methods and tool behavior. If the finding is specific to a project, use that project's `.learnings/LEARNINGS.md` instead. Do not copy private project details into a broader ledger.
+2. **Recall before experimenting.** Search the applicable ledger for related entries and treat them as dated candidate knowledge, not current proof. Recheck environment-dependent claims before relying on them.
+3. **Create the ledger when needed.** If the target ledger does not exist, create its parent directory and initialize it from `assets/LEARNINGS.md` before appending. Never write accumulated entries back into the skill's installed `assets/` directory.
+4. **Record only reusable knowledge.** Persist validated corrections, repeatable methods, recurring tool/environment behavior, or knowledge gaps that would change a future decision. Do not log routine task facts, raw transcripts, secrets, personal data, or unsupported guesses. A provisional but useful hypothesis may be recorded with `Status: pending` and an explicit validation question.
+5. **Append and deduplicate.** Preserve existing entries. Before adding, search for the same pattern; if it recurs, update that entry's recurrence count and evidence dates rather than creating a duplicate. Include a concise source/evidence reference that can be checked later.
+6. **Promote cautiously.** Keep a one-off lesson `pending`. Mark it `promoted` only after independent recurrence or explicit user confirmation, and only then propose or make a narrow change to durable guidance when authorized. A ledger entry does not itself rewrite this skill, workspace instructions, or configuration.
+7. **Report persistence honestly.** State whether a learning was appended, updated, or not recorded. If persistence is blocked, say why; do not imply it will be remembered.
+
+At the start of a qualifying loop, inspect only the relevant ledger and entries. For micro-loops with no reusable finding, do not create an empty log entry; still say that no durable learning was identified when that distinction matters.
 
 ## Workflow
 
@@ -195,6 +210,8 @@ New information:
 Remaining uncertainty:
 Confidence update:
 ```
+
+Then decide whether the result is reusable. If so, append or update the scoped ledger entry under `Persistent Learning`; distinguish observed evidence from interpretation and retain unresolved validation as pending.
 
 ### 6. Select
 
@@ -313,3 +330,4 @@ For final reports, include:
 6. conclusion
 7. remaining uncertainty
 8. recommended next action
+9. persistent learning recorded, updated, or not applicable

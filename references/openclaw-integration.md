@@ -71,13 +71,20 @@ Enable the hook:
 openclaw hooks enable uncertainty-reduction-loop
 ```
 
-## Create Learnings Directory
+## Persistent Learning Ledger
 
-Create optional logs for reusable learnings and experiment failures:
+The default cross-project ledger is the active agent workspace's `.learnings/LEARNINGS.md`. The skill reads relevant entries before an investigation and appends reusable findings after validation. Project-specific lessons belong in that project's own `.learnings/LEARNINGS.md`; do not copy project-private details into the workspace ledger.
+
+Create the starter ledger once if it does not exist:
 
 ```bash
 mkdir -p ~/.openclaw/workspace/.learnings
 cp assets/LEARNINGS.md ~/.openclaw/workspace/.learnings/LEARNINGS.md
+```
+
+Error and feature-request logs are optional:
+
+```bash
 cp assets/ERRORS.md ~/.openclaw/workspace/.learnings/ERRORS.md
 cp assets/FEATURE_REQUESTS.md ~/.openclaw/workspace/.learnings/FEATURE_REQUESTS.md
 ```
@@ -96,13 +103,15 @@ Create and validate a machine-readable report:
 
 ```text
 Did a loop produce a reusable investigation pattern?
-├── No -> Keep the result task-local.
+├── No -> Keep the result task-local; do not add a ledger entry.
 └── Yes -> Is it a tool gotcha?
     ├── Yes -> Promote to TOOLS.md or a tool-specific skill.
     └── No -> Is it a workflow rule?
         ├── Yes -> Promote to AGENTS.md or a reusable skill.
-        └── No -> Keep in .learnings/LEARNINGS.md until recurrence is proven.
+        └── No -> Record as pending in .learnings/LEARNINGS.md until recurrence is proven.
 ```
+
+One-off observations remain `pending`. Promote a finding to durable operating guidance only after independent recurrence or explicit user confirmation. A ledger entry does not automatically edit a skill or workspace policy.
 
 ## OpenClaw-Specific Triggers
 
